@@ -25,6 +25,6 @@ So, from the server side you must invoke that method in your app like this.
 
 Once the service has been initialized, then we are able to use these two methods:
 
-- ```sendMessage(lineUserId, messages)```: Sends to a determinate user, an array of one or more messages. Refer to the [official documentation](https://devdocs.line.me/en/?go#push-message) to see how the messages array should be set.
+- ```sendMessage(lineUserId, messages)```: Sends to a determinate user, an array of one or more messages. Refer to the [official documentation](https://devdocs.line.me/en/?go#send-message-object) to see how the messages array should be set.
 
 - ```validateMessage(requestBody, signature)```: Checks if a message received in the webhook URL is valid or not returns true or false). It validates if the request came from a trusty source, by following [these guidelines](https://devdocs.line.me/en/?go#webhooks).
