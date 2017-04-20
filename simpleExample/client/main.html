@@ -1,0 +1,20 @@
+<head>
+  <title>quickAndDirtyLine</title>
+</head>
+
+<body>
+  <h1>LINE!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <button type="button" class="line-login">LINE LOGIN</button>
+  <button type="button" class="logout">LOGOUT</button>
+  <p>Line User Id: {{ lineUser }}</p>
+  <form>
+    UserId: <input type="text" class="message-user"> <br />
+    Message: <input type="text" class="message-text"> <br />
+    <input type="submit" value="Send Message" class="message-button">
+  </form>
+</template>
