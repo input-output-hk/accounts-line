@@ -27,4 +27,6 @@ Once the service has been initialized, then we are able to use these two methods
 
 - ```sendMessage(lineUserId, messages)```: Sends to a determinate user, an array of one or more messages. Refer to the [official documentation](https://devdocs.line.me/en/?go#send-message-object) to see how the messages array should be set.
 
+**NOTE**: the first param ```lineUserId``` refers to the internal LINE userId, not the username. [Line-OAuth](https://github.com/input-output-hk/line-oauth) package provides an useful API to get the userData, from which you can retrieve the userId. We've added it as a dependency into this very package, so you should be able to use it.
+
 - ```validateMessage(requestBody, signature)```: Checks if a message received in the webhook URL is valid or not returns true or false). It validates if the request came from a trusty source, by following [these guidelines](https://devdocs.line.me/en/?go#webhooks).
