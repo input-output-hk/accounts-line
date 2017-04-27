@@ -13,8 +13,16 @@
   <button type="button" class="logout">LOGOUT</button>
   <p>Line User Id: {{ lineUser }}</p>
   <form>
-    UserId: <input type="text" class="message-user"> <br />
+    UserId: 
+    <select class="message-user input" name="role" required>
+      {{#each userId in getLineUserIds}}
+        <option class="dropdown-option" value={{userId}}>{{userId}}</option>
+      {{/each}}
+    </select> 
+    <br />
+    <br />
     Message: <input type="text" class="message-text"> <br />
+    <br />
     <input type="submit" value="Send Message" class="message-button">
   </form>
 </template>

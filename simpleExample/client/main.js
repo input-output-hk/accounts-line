@@ -17,6 +17,9 @@ Template.hello.helpers({
       return '';
     }
   },
+  getLineUserIds() {
+    return Meteor.users.find().fetch().map((user) => { return user.profile.id});
+  }
 });
 
 Template.hello.events({
