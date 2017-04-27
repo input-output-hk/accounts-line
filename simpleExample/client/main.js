@@ -19,6 +19,12 @@ Template.hello.helpers({
   },
   getLineUserIds() {
     return Meteor.users.find().fetch().map((user) => { return user.profile.id});
+  },
+  userIsLoggedIn() {
+    return !!Meteor.user();
+  },
+  thereAreUsersInDatabase() {
+    return Meteor.users.find().fetch().length > 0;
   }
 });
 
@@ -39,9 +45,12 @@ Template.hello.events({
     const message = $(".message-text").val();
     console.log('message', message, lineId);
     Meteor.call('sendLineMessage', message, lineId, (err, res) => {
-      if (res) {
-        alert('Message send!');
+      if (err) {
+        alert('There\'s been an error, please check the terminal');
+        console.log(err);
+        return;
       }
+      alert('Message sent!');
     });
   },
   'click .logout'(event, instance) {
