@@ -5,26 +5,29 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Template.hello.onCreated(function helloOnCreated() {
+  this.autorun(function(){
+    Meteor.subscribe('usersWithLineIds');
+  })
 });
 
 Template.hello.helpers({
   lineUser() {
     const user = Meteor.users.findOne({ _id: Meteor.userId() });
 
-    if (user) {
+    if (user && user.services.line) {
       return user.services.line.id;
     } else {
       return '';
     }
   },
   getLineUserIds() {
-    return Meteor.users.find().fetch().map((user) => { return user.profile.id});
+    return Meteor.users.find({"profile.id": {$exists: true}}).fetch().map((user) => { return user.profile.id});
   },
   userIsLoggedIn() {
     return !!Meteor.user();
   },
   thereAreUsersInDatabase() {
-    return Meteor.users.find().fetch().length > 0;
+    return Meteor.users.find({"profile.id": {$exists: true}}).count() > 0;
   }
 });
 
